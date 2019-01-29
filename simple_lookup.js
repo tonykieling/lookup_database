@@ -12,7 +12,6 @@ const client = new pg.Client({
   ssl      : settings.ssl
 });
 
-client.connect();
 
 function convertToDate(data) {
   const birthday = new Date(data);
@@ -21,6 +20,7 @@ function convertToDate(data) {
   const day = (birthday.getDate() < 10)? ("0" + (birthday.getDate())) : (birthday.getDate());
   return(`${year}-${month}-${day}`);
 }
+
 
 function doQuery(client, query, values) {
   client.query(query, values, (err, res) => {
@@ -45,6 +45,7 @@ function doQuery(client, query, values) {
   });
 }
 
+
 function findFamous(client, data) {
   const query = "SELECT * FROM famous_people WHERE first_name=$1 OR last_name=$1";
   const values = [data];
@@ -54,4 +55,5 @@ function findFamous(client, data) {
 
 
 console.log('Searching...');
+client.connect();
 findFamous(client, name);
