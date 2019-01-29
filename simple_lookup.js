@@ -1,6 +1,7 @@
 const pg = require("pg");
 const settings = require("./settings"); // settings.json
 
+// receiving the parameters from the user
 const [name] = process.argv.slice(2);
 
 const client = new pg.Client({
@@ -13,6 +14,7 @@ const client = new pg.Client({
 });
 
 
+// function to convert postgreSQL date to YYYY-MM-DD
 function convertToDate(data) {
   const birthday = new Date(data);
   const year = birthday.getFullYear();
@@ -22,6 +24,7 @@ function convertToDate(data) {
 }
 
 
+// generic function to query the DB
 function doQuery(client, query, values) {
   client.query(query, values, (err, res) => {
     if (err) {
@@ -46,6 +49,7 @@ function doQuery(client, query, values) {
 }
 
 
+// function which receives the arguments to the query
 function findFamous(client, data) {
   const query = "SELECT * FROM famous_people WHERE first_name=$1 OR last_name=$1";
   const values = [data];
