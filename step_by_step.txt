@@ -1,0 +1,12 @@
+- install knew globally and save to the json file by:
+npm install -g knex --save
+knex init
+- set the knexfile.js to connect to the server
+knex migrate:make create_milestones
+ or
+knex migrate:make setup
+  will create a dir migrations and a migration file in that dir
+- write the script to up (create the table with its columns) and down (rollback)
+knex migrate:latest -> to execute up
+knex migrate:rollback -> to execute down
+
