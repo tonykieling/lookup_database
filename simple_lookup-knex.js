@@ -37,7 +37,8 @@ knex('famous_people')
   .where('first_name', name)
   .orWhere('last_name', name)
   .asCallback(function(err, rows) {
-    if (err) return console.error(err);
+    if (err) return(console.error(err));
+
     console.log(`Found ${rows.length} person(s) by the name ${name}:`);
     let count = 1;
     rows.forEach(row => {
