@@ -46,4 +46,3 @@ knex('famous_people')
     })
     knex.destroy();
   })
-  
